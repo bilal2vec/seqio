@@ -23,7 +23,7 @@ from typing import Any, ClassVar, Dict, Iterable, Optional, Sequence, Union
 
 from absl import logging
 import tensorflow.compat.v2 as tf
-import tensorflow_text as tf_text
+# import tensorflow_text as tf_text
 
 from sentencepiece import sentencepiece_model_pb2
 import sentencepiece as sentencepiece_processor
@@ -428,7 +428,8 @@ class SentencePieceVocabulary(Vocabulary):
   @property
   def tf_tokenizer(self):
     """Instantiate and return a TF tokenizer."""
-    return tf_text.SentencepieceTokenizer(model=self.sp_model)
+    return
+    # return tf_text.SentencepieceTokenizer(model=self.sp_model)
 
   @property
   def vocab_size(self):
@@ -937,19 +938,20 @@ class BertWordPieceVocabulary(Vocabulary):
     self._keep_whitespace = keep_whitespace
     self._normalization_form = normalization_form
     self._preserve_unused_token = preserve_unused_token
-    self._tokenizer = tf_text.BertTokenizer(
-        vocab_lookup_table=vocab_lookup_table,
-        suffix_indicator=suffix_indicator,
-        max_bytes_per_word=max_bytes_per_word,
-        max_chars_per_token=max_chars_per_token,
-        token_out_type=token_out_type,
-        unknown_token=unknown_token,
-        split_unknown_characters=split_unknown_characters,
-        lower_case=lower_case,
-        keep_whitespace=keep_whitespace,
-        normalization_form=normalization_form,
-        preserve_unused_token=preserve_unused_token,
-    )
+    # self._tokenizer = tf_text.BertTokenizer(
+    #     vocab_lookup_table=vocab_lookup_table,
+    #     suffix_indicator=suffix_indicator,
+    #     max_bytes_per_word=max_bytes_per_word,
+    #     max_chars_per_token=max_chars_per_token,
+    #     token_out_type=token_out_type,
+    #     unknown_token=unknown_token,
+    #     split_unknown_characters=split_unknown_characters,
+    #     lower_case=lower_case,
+    #     keep_whitespace=keep_whitespace,
+    #     normalization_form=normalization_form,
+    #     preserve_unused_token=preserve_unused_token,
+    # )
+    self._tokenizer = None
     self._vocab = self._tokenizer._wordpiece_tokenizer._vocab_lookup_table
     self._pad_id = pad_id
     self._unk_id = self._vocab.lookup(tf.constant(unknown_token)).numpy()

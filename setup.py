@@ -53,7 +53,6 @@ setuptools.setup(
         'packaging',
         'pyglove',
         'sentencepiece',
-        'tensorflow-text',
         'tfds-nightly',
         # remove this when sentencepiece_model_pb2 is re-generated in the
         # sentencepiece package.
